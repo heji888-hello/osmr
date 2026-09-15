@@ -1,4 +1,4 @@
-# OSMR - Student Music Portal
+# OSMR - Oh Student Music Reappraisal
 
 > **Project Status: ~75% Complete**  
 > The core frontend layout, form processing, dashboard grid, and multi-format audio/zip uploading engine are fully built and working! Remaining work includes shifting from local memory storage to a permanent database system and polishing user profile custom views.

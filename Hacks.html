@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>OSMR - DAW shortcuts</title>
+    <link rel="stylesheet" href="Css.css">
+    <style>
+        /* Layout Grid just for DAW Cards */
+        .hacks-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .daw-box {
+            background: rgba(26, 23, 33, 0.7);
+            border: 1px solid rgba(68, 59, 82, 0.8);
+            padding: 25px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .daw-box:hover {
+            transform: translateY(-4px);
+            border-color: #ff66aa;
+        }
+
+        .daw-box h3 {
+            margin-top: 0;
+            font-size: 1.3rem;
+            border-bottom: 2px solid #ff66aa;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        .hack-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        .hack-table td {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(68, 59, 82, 0.3);
+        }
+
+        .hack-table td:last-child {
+            text-align: right;
+        }
+
+        /* Keyboard Key Visual Styling Styling */
+        kbd {
+            background-color: #ff66aa;
+            color: #ffffff;
+            padding: 3px 6px;
+            font-family: monospace;
+            font-size: 0.8rem;
+            border-radius: 3px;
+            box-shadow: 0 2px 0 #b33670;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Unified Master Navigation Bar -->
+    <nav>
+        <strong>OSMR</strong> | 
+        <a href="osmr!.html">Main</a> | 
+        <a href="Home.html">Home</a> | 
+        <a href="About.html">About</a> | 
+        <a href="Upload.html">Upload Project</a>
+        <a href="Tips.html">Tips & Guides</a>
+    </nav>
+
+    <!-- Main Container Frame with Responsive Bounds -->
+    <main style="max-width: 1200px; margin: 60px auto; padding: 40px;">
+        <h1 style="text-align: center;">DAW Workflow Shortcuts</h1>
+        <p style="text-align: center; color: #bfa7de; max-width: 600px; margin: 0 auto;">
+            Stop clicking around menus. Use these essential student keyboard layout shortcuts to speed up your arrangement, sequencing, and mixing.
+        </p>
+
+        <div class="hacks-container">
+            
+            <!-- FL Studio Box -->
+            <div class="daw-box">
+                <h3 style="color: #ff9f43;">FL Studio</h3>
+                <table class="hack-table">
+                    <tr><td>Quick Slice (Knife)</td><td><kbd>C</kbd></td></tr>
+                    <tr><td>Paint Tool (Brush)</td><td><kbd>B</kbd></td></tr>
+                    <tr><td>Duplicate Selection</td><td><kbd>Ctrl</kbd> + <kbd>B</kbd></td></tr>
+                    <tr><td>Quick Quantize Notes</td><td><kbd>Ctrl</kbd> + <kbd>Q</kbd></td></tr>
+                    <tr><td>Link to Mixer Track</td><td><kbd>Ctrl</kbd> + <kbd>L</kbd></td></tr>
+                    <tr><td>Stretch Audio Toggle</td><td><kbd>Shift</kbd> + <kbd>M</kbd></td></tr>
+                </table>
+            </div>
+
+            <!-- Ableton Live Box -->
+            <div class="daw-box">
+                <h3 style="color: #00ced1;">Ableton Live</h3>
+                <table class="hack-table">
+                    <tr><td>Split Audio Clip</td><td><kbd>Ctrl</kbd> + <kbd>E</kbd></td></tr>
+                    <tr><td>Consolidate Clips</td><td><kbd>Ctrl</kbd> + <kbd>J</kbd></td></tr>
+                    <tr><td>Duplicate Clip/Loop</td><td><kbd>Ctrl</kbd> + <kbd>D</kbd></td></tr>
+                    <tr><td>Insert MIDI Clip</td><td><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>M</kbd></td></tr>
+                    <tr><td>Toggle Clip/Device View</td><td><kbd>Shift</kbd> + <kbd>Tab</kbd></td></tr>
+                    <tr><td>Group Selected Tracks</td><td><kbd>Ctrl</kbd> + <kbd>G</kbd></td></tr>
+                </table>
+            </div>
+
+            <!-- Logic Pro Box -->
+            <div class="daw-box">
+                <h3 style="color: #ff66aa;">Logic Pro</h3>
+                <table class="hack-table">
+                    <tr><td>Split Region at Playhead</td><td><kbd>Cmd</kbd> + <kbd>T</kbd></td></tr>
+                    <tr><td>Join Regions</td><td><kbd>Cmd</kbd> + <kbd>J</kbd></td></tr>
+                    <tr><td>Cycle Loop (Toggle)</td><td><kbd>C</kbd></td></tr>
+                    <tr><td>Open Piano Roll</td><td><kbd>P</kbd></td></tr>
+                    <tr><td>Open Mixer Window</td><td><kbd>X</kbd></td></tr>
+                    <tr><td>Repeat Region</td><td><kbd>R</kbd></td></tr>
+                </table>
+            </div>
+
+            <!-- Pro Tools Box -->
+            <div class="daw-box">
+                <h3 style="color: #bc8fff;">Pro Tools</h3>
+                <table class="hack-table">
+                    <tr><td>Separate Clip</td><td><kbd>Ctrl</kbd> + <kbd>E</kbd></td></tr>
+                    <tr><td>Heal Separation</td><td><kbd>Ctrl</kbd> + <kbd>H</kbd></td></tr>
+                    <tr><td>Consolidate Clip</td><td><kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>3</kbd></td></tr>
+                    <tr><td>Toggle Mix/Edit Window</td><td><kbd>Ctrl</kbd> + <kbd>=</kbd></td></tr>
+                    <tr><td>New Track Menu</td><td><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>N</kbd></td></tr>
+                    <tr><td>Create Fades Menu</td><td><kbd>Ctrl</kbd> + <kbd>F</kbd></td></tr>
+                </table>
+            </div>
+
+        </div>
+
+        <p style="font-size: 0.85rem; font-style: italic; margin-top: 40px; text-align: center; color: #8b7fa4;">
+            *Windows users use <strong>Ctrl/Alt</strong>. macOS users use <strong>Cmd/Option</strong>.
+        </p>
+
+        <!-- Secure Bottom Padding Block Wrapper to Avoid Border Sticking Layout Glitches -->
+        <div style="text-align: center; margin-top: 50px; margin-bottom: 20px;">
+            <a href="Tips.html"><button>Back to Tips & Guides</button></a>
+        </div>
+    </main>
+
+</body>
+</html>

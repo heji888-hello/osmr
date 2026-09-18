@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>OSMR - Home</title>
+    <link rel="stylesheet" href="Css.css">
+    <style>
+        /* Modern 2-Column Dashboard Layout */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        /* Stats Bar Banner Layout */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .stat-card {
+            background: rgba(34, 31, 41, 0.4);
+            border: 1px solid rgba(68, 59, 82, 0.6);
+            padding: 15px;
+        }
+
+        .stat-card h4 {
+            margin: 0;
+            color: #ff66aa;
+            font-size: 1.8rem;
+        }
+
+        .stat-card p {
+            margin: 5px 0 0 0;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Sidebar Cards Styles */
+        .sidebar-panel {
+            background: rgba(26, 23, 33, 0.6);
+            border: 1px solid #443b52;
+            padding: 20px;
+            height: fit-content;
+        }
+
+        .sidebar-panel h3 {
+            margin-top: 0;
+            border-bottom: 2px solid #ff66aa;
+            padding-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .sidebar-list {
+            padding-left: 20px;
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        .sidebar-list li {
+            margin-bottom: 12px;
+            color: #d3c9e3;
+        }
+
+        @media (max-width: 850px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <strong>OSMR</strong> | 
+        <a href="osmr!.html">Main</a> | 
+        <a href="index.html">Home</a> | 
+        <a href="About.html">About</a> | 
+        <a href="Upload.html">Upload Project</a>
+        <a href="Tips.html">Tips & Guides</a>
+    </nav>
+    <!-- Main Container Layout Layout -->
+    <main style="max-width: 1200px; margin: 40px auto; padding: 40px;">
+        
+        <!-- FIX: Added text-align: center; to align the heading and the subtext properly -->
+        <div style="margin-bottom: 35px; text-align: center;">
+            <h2>Recent Music Submissions</h2>
+            <p style="margin-top: 5px;">Help other student producers improve by listening and reviewing their mixdowns and DAW projects!</p>
+        </div>
+
+        <!-- Platform Stats Banner Layer to remove dead space instantly -->
+        <div class="stats-bar">
+            <div class="stat-card">
+                <h4 id="stat-tracks">--</h4>
+                <p>Active Tracks</p>
+            </div>
+            <div class="stat-card">
+                <h4 id="stat-reviews">--</h4>
+                <p>Reviews Given</p>
+            </div>
+            <div class="stat-card">
+                <h4 style="color: #00ced1;">Online</h4>
+                <p>Community Hub</p>
+            </div>
+        </div>
+
+        <!-- Split Grid Workspace Layout Container -->
+        <div class="dashboard-grid">
+            
+            <!-- Left Side Element Element: Dynamic Feed Stream Container -->
+            <div>
+                <div id="music-feed-container">
+                    <!-- SKELETON LOADER PLACEHOLDER (Shows while script runs) -->
+                    <div style="background: rgba(34, 31, 41, 0.2); border: 1px dashed #443b52; padding: 30px; text-align: center;">
+                        <p style="font-style: italic;">Loading fresh community mixes...</p>
+                    </div>
+                </div>
+                <div id="no-submissions-banner"></div>
+            </div>
+
+            <!-- Right Side Element Element: Static Information Panels Panel Sidebar -->
+            <div class="sidebar-wrapper" style="display: flex; flex-direction: column; gap: 20px;">
+                
+                <!-- Panel Box 1: Quick Guidelines Layout Layout -->
+                <div class="sidebar-panel">
+                    <h3>Feedback Rules</h3>
+                    <ul class="sidebar-list">
+                        <li><strong>Be Constructive:</strong> Say what you like before pointing out mix flaws.</li>
+                        <li><strong>Be Specific:</strong> Mention timestamps (e.g., "At 1:24 the vocals clash with the synth").</li>
+                        <li><strong>Check Technicals:</strong> Comment on low-end mud, clipping, stereo width, or arrangement pacing.</li>
+                    </ul>
+                </div>
+
+                <!-- Panel Box 2: Quick Links Box Widget -->
+                <div class="sidebar-panel" style="text-align: center;">
+                    <h3>Stuck in a Mix?</h3>
+                    <p style="font-size: 0.9rem; margin-bottom: 15px;">Use professional workflow systems to save time.</p>
+                    <a href="Tips.html" style="text-decoration: none;"><button style="padding: 8px 15px; font-size: 0.85rem; width: 100%; margin: 0;">Read Production Guides</button></a>
+                </div>
+
+            </div>
+
+        </div>
+    </main>
+
+        <script>
+        // Run the script as soon as the DOM loads completely
+        document.addEventListener('DOMContentLoaded', loadMusicFeed);
+
+        function loadMusicFeed() {
+            const feedContainer = document.getElementById('music-feed-container');
+            const noSubmissionsBanner = document.getElementById('no-submissions-banner');
+            
+            // Targets for dashboard statistics numbers
+            const statTracks = document.getElementById('stat-tracks');
+            const statReviews = document.getElementById('stat-reviews');
+
+            // Pull simulated track database from local storage
+            const tracks = JSON.parse(localStorage.getItem('uploadedTracks')) || [];
+
+            feedContainer.innerHTML = '';
+            noSubmissionsBanner.innerHTML = '';
+
+            // Calculate total reviews given dynamically across all songs
+            let totalComments = 0;
+            tracks.forEach(t => totalComments += (t.comments ? t.comments.length : 0));
+            
+            // Update the top banner status values instantly
+            statTracks.innerText = tracks.length;
+            statReviews.innerText = totalComments;
+
+            // If empty, display the placeholder upload invitation layout
+            if (tracks.length === 0) {
+                noSubmissionsBanner.innerHTML = `
+                    <div style="border: 1px dashed #443b52; padding: 40px; text-align: center; margin-top: 10px; background: rgba(34, 31, 41, 0.2);">
+                        <h3>No music projects uploaded yet!</h3>
+                        <p>Be the first person to share your track with the community for feedback.</p>
+                        <br>
+                        <a href="Upload.html"><button style="padding: 10px 20px; background-color: #ff66aa; color: white; border: none; cursor: pointer; font-weight: bold;">Upload Your Music Now</button></a>
+                    </div>
+                `;
+                return;
+            }
+
+            // Loop through each song item array configuration and render cards
+            tracks.forEach(track => {
+                const masterWrapper = document.createElement('div');
+                masterWrapper.style.marginBottom = '25px';
+
+                // Check file extensions to handle zip links vs audio tags smoothly
+                const filenameLower = (track.filename || '').toLowerCase();
+                const isZip = filenameLower.endsWith('.zip');
+                
+                let playerOrDownloadHTML = '';
+                if (isZip) {
+                    playerOrDownloadHTML = `
+                        <a href="#" onclick="alert('ZIP downloaded! (Simulated)'); return false;" style="display: inline-block; background-color: #ff66aa; color: white; padding: 8px 15px; text-decoration: none; font-weight: bold; font-size: 0.85rem;">
+                            📥 Download Project ZIP
+                        </a>`;
+                } else {
+                    playerOrDownloadHTML = `
+                        <div style="background: rgba(0,0,0,0.2); padding: 5px; border-radius: 4px;">
+                            <span style="font-size:0.75rem; color:#bfa7de; display:block; margin-bottom:3px;">Demo Player</span>
+                            <audio controls style="height: 30px; width: 220px;">
+                                <source src="#" type="audio/mpeg">
+                                Your browser does not support the audio element.
+                            </audio>
+                        </div>`;
+                }
+
+                // Render review comment lists dynamically for the card element
+                let commentsHTML = '';
+                if (track.comments && track.comments.length > 0) {
+                    track.comments.forEach(c => {
+                        commentsHTML += `
+                            <div style="border-bottom: 1px solid rgba(68, 59, 82, 0.4); padding: 8px 0; font-size: 0.85rem;">
+                                <strong style="color: #ff66aa;">${c.author}</strong> 
+                                <span style="font-size: 0.7rem; color: #888; margin-left: 5px;">(${c.timestamp})</span>
+                                <p style="margin: 4px 0 0 0; color: #d3c9e3;">${c.text}</p>
+                            </div>`;
+                    });
+                } else {
+                    commentsHTML = `<p style="color: #666; font-size: 0.85rem; font-style: italic; margin: 5px 0;">No mix reviews left yet. Help them out below!</p>`;
+                }
+
+                // Match original application card layout
+                masterWrapper.innerHTML = `
+                    <div style="background-color: #221f29b0; border: 1px solid #443b52; padding: 20px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); margin-bottom: 15px;">
+                        <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; flex-wrap: wrap;">
+                            <div style="flex: 1; min-width: 250px;">
+                                <span style="background-color: #ff66aa; color: white; font-size: 0.75rem; font-weight: 700; padding: 4px 10px; text-transform: uppercase; display: inline-block; margin-bottom: 8px;">
+                                    ${track.daw ? track.daw.replace('_', ' ') : 'Unknown DAW'} | ${track.bpm} BPM
+                                </span>
+                                <h3 style="margin: 5px 0; font-size: 1.3rem; color: #ffffff;">${track.title} <span style="font-size: 0.9rem; color: #bfa7de; font-weight: normal;">— ${track.genre}</span></h3>
+                                <p style="margin: 10px 0; font-size: 0.9rem; color: #d3c9e3; line-height: 1.4;"><strong>Producer Notes:</strong> ${track.note}</p>
+                                <span style="font-size: 0.75rem; color: #665c78; display: block;">Attached asset: ${track.filename}</span>
+                            </div>
+                            
+                            <div style="text-align: right; min-width: 150px;">
+                                ${playerOrDownloadHTML}
+                            </div>
+                        </div>
+
+                        <!-- Critique and Review Feedback Component Section -->
+                        <div style="margin-top: 20px; padding-top: 15px; border-top: 1px solid #443b52;">
+                            <h4 style="margin: 0 0 10px 0; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.5px; color: #bfa7de;">Mix Evaluations</h4>
+                            <div style="max-height: 200px; overflow-y: auto; background: rgba(0,0,0,0.15); padding: 10px; border-radius: 4px; margin-bottom: 12px;">
+                                ${commentsHTML}
+                            </div>
+                            
+                            <!-- Input Submission Form Module -->
+                            <form onsubmit="handleFeedbackSubmit(event, ${track.id})" style="display: flex; gap: 8px; flex-wrap: wrap;">
+                                <input type="text" placeholder="Your Name" required style="background: #171315; border: 1px solid #443b52; color: white; padding: 6px 10px; font-size: 0.85rem; width: 120px;">
+                                <input type="text" placeholder="Provide production advice / mix feedback..." required style="background: #171315; border: 1px solid #443b52; color: white; padding: 6px 10px; font-size: 0.85rem; flex: 1; min-width: 200px;">
+                                <button type="submit" style="background: #ff66aa; color: white; border: none; padding: 6px 15px; font-weight: bold; cursor: pointer; font-size: 0.85rem;">Submit Review</button>
+                            </form>
+                        </div>
+                    </div>
+                `;
+                feedContainer.appendChild(masterWrapper);
+            });
+        }
+
+        // Logic for handling community text critique addition
+        function handleFeedbackSubmit(event, trackId) {
+            event.preventDefault();
+            const form = event.target;
+            const inputs = form.querySelectorAll('input');
+            const author = inputs[0].value.trim();
+            const text = inputs[1].value.trim();
+
+            let tracks = JSON.parse(localStorage.getItem('uploadedTracks')) || [];
+            const track = tracks.find(t => t.id === trackId);
+
+            if (track) {
+                if (!track.comments) track.comments = [];
+                
+                // Add the brand new comment payload details
+                track.comments.push({
+                    id: Date.now(),
+                    author: author,
+                    text: text,
+                    timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+                });
+
+                // Commit updates to local storage simulation
+                localStorage.setItem('uploadedTracks', JSON.stringify(tracks));
+                form.reset();
+                
+                // Instantly sync the visual view layout nodes
+                loadMusicFeed();
+            }
+        }
+    </script>
+
+</body>
+</html>

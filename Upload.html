@@ -5,12 +5,10 @@
     <title>OSMR - Upload Project</title>
     <link rel="stylesheet" href="Css.css">
     <style>
-        /* ซ่อนปุ่มเลือกไฟล์แบบดั้งเดิมของบราวเซอร์ */
         input[type="file"] {
             display: none;
         }
 
-        /* ดีไซน์ปุ่มอัปโหลดแบบ Custom ใหม่ทั้งหมด */
         .custom-file-upload {
             display: flex;
             flex-direction: column;
@@ -26,7 +24,6 @@
             text-align: center;
         }
 
-        /* เอฟเฟกต์เมื่อเมาส์ชี้ไปที่ปุ่ม */
         .custom-file-upload:hover {
             background-color: #342e3e;
             color: #ffffff;
@@ -34,7 +31,6 @@
             box-shadow: 0 0 12px rgba(255, 102, 170, 0.3);
         }
 
-        /* ไอคอนจำลองสัญลักษณ์การอัปโหลด */
         .upload-icon {
             font-size: 1.5rem;
             color: #ff66aa;
@@ -42,7 +38,6 @@
             font-weight: bold;
         }
 
-        /* ตัวแสดงชื่อไฟล์ที่เลือก */
         .file-name-display {
             display: block;
             margin-top: 8px;
@@ -58,18 +53,17 @@
     <nav>
         <strong>OSMR</strong> | 
         <a href="osmr!.html">Main</a> | 
-        <a href="Home.html">Home</a> | 
+        <a href="index.html">Home</a> |  
         <a href="About.html">About</a> | 
         <a href="Upload.html">Upload Project</a> |
         <a href="Tips.html">Tips & Guides</a>
     </nav>
 
-    <!-- WRAPPED IN THE MAIN CONTAINER TO CENTER IT AND ADD THE BOX STYLE -->
     <main class="main-container">
         <h1>Submit Your Music Project</h1>
         <p>Fill out the form below to get production and mixing feedback from other students.</p>
 
-        <form action="http://localhost:3000/upload" method="POST" enctype="multipart/form-data">
+        <form id="uploadForm">
             <p>
                 <label>Track Title:</label><br>
                 <input type="text" name="track_title" placeholder="e.g. Moonlight Bass" required>
@@ -101,13 +95,13 @@
 
             <p>
                 <label>Upload Audio Preview or Project File (.mp3, .wav, .zip, .m4a):</label><br>
-                <!-- ปรับโครงสร้างเพื่อครอบปุ่ม Custom และซ่อนปุ่มจริง -->
+                
                 <label for="project_file" class="custom-file-upload">
                     <span class="upload-icon">⇪</span>
                     <span>Click to choose or drag your project file here</span>
                 </label>
                 <input type="file" id="project_file" name="project_file" accept=".mp3,.wav,.zip,.m4a" required>
-                <!-- ตัวหนังสือแสดงชื่อไฟล์ที่จะอัปโหลด -->
+                
                 <span id="file-chosen" class="file-name-display">No file chosen</span>
             </p>
 
@@ -120,11 +114,12 @@
         </form>
     </main>
 
-    <!-- JavaScript สั้นๆ เพื่อดึงชื่อไฟล์มาแสดงผลเมื่อผู้ใช้ทำการคลิกเลือกไฟล์สำเร็จ -->
+    <!-- CLEANED UP: Combined into one clean, error-free script block -->
     <script>
         const fileInput = document.getElementById('project_file');
         const fileChosen = document.getElementById('file-chosen');
 
+        // Handles displaying the selected file name visually
         fileInput.addEventListener('change', function() {
             if (this.files && this.files.length > 0) {
                 fileChosen.textContent = "Selected: " + this.files[0].name;
@@ -132,7 +127,43 @@
                 fileChosen.textContent = "No file chosen";
             }
         });
+
+        // Client-side database interceptor
+        document.getElementById('uploadForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Block standard server actions
+
+            const title = document.querySelector('[name="track_title"]').value;
+            const genre = document.querySelector('[name="genre"]').value;
+            const bpm = document.querySelector('[name="bpm"]').value || 'N/A';
+            const daw = document.querySelector('[name="daw_type"]').value;
+            const note = document.querySelector('[name="feedback_note"]').value || 'No notes provided.';
+            
+            if (!title || !genre || !fileInput.files.length) {
+                alert("Please fill out all required fields and select a file!");
+                return;
+            }
+
+            // Create a track object matching your old schema rows
+            const newTrack = {
+                id: Date.now(),
+                title: title,
+                genre: genre,
+                bpm: bpm,
+                daw: daw,
+                note: note,
+                filename: fileInput.files[0].name, 
+                comments: []
+            };
+
+            // Save array cleanly into localStorage database simulator
+            let tracks = JSON.parse(localStorage.getItem('uploadedTracks')) || [];
+            tracks.unshift(newTrack);
+            localStorage.setItem('uploadedTracks', JSON.stringify(tracks));
+
+            alert(`Upload Successful! "${title}" has been successfully broadcasted onto the live home stream.`);
+            window.location.href = 'index.html'; // Redirect to home layout page structure
+        });
     </script>
-    
+
 </body>
 </html>

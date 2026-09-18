@@ -5,7 +5,7 @@
     <title>OSMR - Home</title>
     <link rel="stylesheet" href="Css.css">
     <style>
-        /* Modern 2-Column Dashboard Layout */
+       
         .dashboard-grid {
             display: grid;
             grid-template-columns: 1fr 300px;
@@ -13,7 +13,7 @@
             margin-top: 30px;
         }
 
-        /* Stats Bar Banner Layout */
+       
         .stats-bar {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -41,7 +41,7 @@
             letter-spacing: 1px;
         }
 
-        /* Sidebar Cards Styles */
+      
         .sidebar-panel {
             background: rgba(26, 23, 33, 0.6);
             border: 1px solid #443b52;
@@ -197,21 +197,20 @@
                 const isZip = filenameLower.endsWith('.zip');
                 
                 let playerOrDownloadHTML = '';
-                if (isZip) {
-                    playerOrDownloadHTML = `
-                        <a href="#" onclick="alert('ZIP downloaded! (Simulated)'); return false;" style="display: inline-block; background-color: #ff66aa; color: white; padding: 8px 15px; text-decoration: none; font-weight: bold; font-size: 0.85rem;">
-                            Download Project ZIP
-                        </a>`;
-                } else {
-                    playerOrDownloadHTML = `
-                        <div style="background: rgba(0,0,0,0.2); padding: 5px; border-radius: 4px;">
-                            <span style="font-size:0.75rem; color:#bfa7de; display:block; margin-bottom:3px;">Demo Player</span>
-                            <audio controls style="height: 30px; width: 220px;">
-                                <source src="#" type="audio/mpeg">
-                                Your browser does not support the audio element.
-                            </audio>
-                        </div>`;
-                }
+if (isZip) {
+    playerOrDownloadHTML = `
+        <a href="#" onclick="alert('ZIP download simulation complete.'); return false;" style="display: inline-block; background-color: #ff66aa; color: white; padding: 8px 15px; text-decoration: none; font-weight: bold; font-size: 0.85rem; border-radius: 4px;">
+            Download ZIP
+        </a>`;
+} else {
+    
+    playerOrDownloadHTML = `
+        <div style="background: rgba(0,0,0,0.2); padding: 8px 12px; border: 1px dashed #443b52; border-radius: 4px; text-align: center;">
+            <span style="font-size:0.75rem; color:#bfa7de; display:block; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">Demo Mode</span>
+            <span style="font-size:0.8rem; color:#888; font-style: italic; display:block; margin-top:2px;">Streaming requires server hosting</span>
+        </div>`;
+}
+
 
                 
                 let commentsHTML = '';

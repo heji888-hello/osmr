@@ -1,43 +1,34 @@
 # OSMR - Oh Student Music Reappraisal
 
-> **Project Status: ~1st version completed(I may update it later but this is the finished 1st version of the web)**  
-> The core frontend layout, form processing, dashboard grid, and multi-format audio/zip uploading engine are fully built and working! Remaining work includes shifting from local memory storage to a permanent database system and polishing user profile custom views.
+> **Project Status: Version 1.0 Live (Static Production Build)**  
+> The core frontend layout, responsive dashboard grid, production tip guides, and a localized browser data pipeline are fully complete. The app handles track indexing and peer critique interactions directly in the user environment.
 
 ---
 
-## Prerequisites
-Before running this project locally, you must have **Node.js** installed on your computer:
-* Download and install it from the official site: [https://nodejs.org](https://nodejs.org)
+## Live Demonstration
+The project is officially deployed and functional on the live web. You can access the interface, test submissions, and leave feedback reviews directly at the production address:
+**[https://github.io](https://github.io)**
 
 ---
 
-## How to Run Locally
+## Architecture & Static Web Workaround
+Because this environment is hosted strictly on GitHub Pages (which only supports frontend static assets), the dependency on a traditional backend server (server.js) has been optimized out. 
 
-### 1. Clone and Navigate
-Download or clone this repository to your computer, then open your terminal (or Command Prompt) inside the project's root directory.
-
-### 2. Install Dependencies
-Run the following command to securely download and rebuild your local `node_modules` structure containing Express and Multer:
-```bash
-npm install
-```
-
-### 3. Start the Server
-Boot up the backend environment locally by running:
-```bash
-node server.js
-```
-*(Note: If your main server script uses a different name like `app.js` or `index.js`, make sure to swap that name into the command above!)*
-
-### 4. Launch the Platform
-Once the terminal logs confirm that the server is up, open your web browser and go directly to:
-```text
-http://localhost:3000/Home.html
-```
+Instead, the application runs a virtualized database engine directly in the browser client using the Web Storage API (localStorage):
+* **Persistent Content Pipeline:** Submitting a track form captures form variables, extracts file target metadata string parameters, and appends the object records cleanly to an item structure inside browser memory.
+* **Dynamic Feed Streaming:** The dashboard layout queries the database layer on window loading routines, dynamically updating metrics counters (Active Tracks / Reviews Given) and generating card templates.
+* **Peer Critique Engine:** Interactive comment modules read indices directly, pushing data arrays onto specific tracks so critique threads update instantly without page refreshes.
 
 ---
 
-## Technical Specifications Built So Far
-* **Backend Framework:** Express 5.x asset routing configuration.
-* **Upload Engine:** Multer storage system accepting `.mp3`, `.wav`, `.m4a`, and `.zip` file formats up to a **100MB limit**.
-* **Automatic Storage Handling:** The application automatically maps and generates a secure local physical `/uploads` folder if it doesn't already exist on deployment.
+## Project Structure & Portability
+While the application runs as a frontend static site, the original backend architecture structures have been preserved in the repository root for future deployment expansions:
+* package.json & package-lock.json — Pre-configured package configurations tracking Express and Multer frameworks.
+* server.js — An optimized backend server ready for deployment to full-stack hosts (Render/Railway), utilizing disk-streaming storage layers and dynamic process.env.PORT environmental fallbacks.
+
+---
+
+## Technical Specifications & Features
+* **Layout Design:** Responsive CSS flexbox modules and two-column dashboard architectures.
+* **Component Widgets:** Dynamic skeleton placeholders, input validation sanitization layers, custom asset drop-zone styling elements, and mechanical keyboard styling accents using the kbd tag.
+* **Developer Details:** Created by Siran, Submitted to Mr. Theophilus Ayepeh.

@@ -128,9 +128,9 @@
             }
         });
 
-        // Client-side database interceptor
+        
         document.getElementById('uploadForm').addEventListener('submit', function(e) {
-            e.preventDefault(); // Block standard server actions
+            e.preventDefault(); 
 
             const title = document.querySelector('[name="track_title"]').value;
             const genre = document.querySelector('[name="genre"]').value;
@@ -143,7 +143,7 @@
                 return;
             }
 
-            // Create a track object matching your old schema rows
+            
             const newTrack = {
                 id: Date.now(),
                 title: title,
@@ -155,13 +155,13 @@
                 comments: []
             };
 
-            // Save array cleanly into localStorage database simulator
+            
             let tracks = JSON.parse(localStorage.getItem('uploadedTracks')) || [];
             tracks.unshift(newTrack);
             localStorage.setItem('uploadedTracks', JSON.stringify(tracks));
 
             alert(`Upload Successful! "${title}" has been successfully broadcasted onto the live home stream.`);
-            window.location.href = 'index.html'; // Redirect to home layout page structure
+            window.location.href = 'index.html'; 
         });
     </script>
 

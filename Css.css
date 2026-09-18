@@ -16,7 +16,7 @@
 
 body { 
     font-family: 'Nexa', Arial, sans-serif; 
-    /* Solid, lighter black with a subtle tint of pink */ 
+   
     background-color: #171315; 
     color: #f1ebd9; 
     margin: 0; 
@@ -24,7 +24,7 @@ body {
     line-height: 1.6; 
 } 
 
-/* Semi-transparent box centered perfectly on the screen */ 
+
 .main-container { 
     background-color: rgba(22, 18, 24, 0.85); 
     border: 2px solid #443b52; 
@@ -35,13 +35,12 @@ body {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7); 
 } 
 
-/* Centers ALL descriptive subtext and paragraphs inside the container layout */ 
 .main-container p { 
     text-align: center; 
     margin-bottom: 25px; 
 } 
 
-/* Navigation Bar */ 
+
 nav { 
     background-color: rgb(31, 16, 30); 
     padding: 15px 20px; 
@@ -69,7 +68,7 @@ nav a:hover {
     color: #ff66aa; 
 } 
 
-/* Typography - Automatically centered */ 
+
 h1, h2, h3, h4 { 
     color: #ffffff; 
     font-weight: 700; 
@@ -81,7 +80,7 @@ h1 {
     margin-bottom: 10px; 
 } 
 
-/* FIX: Centers any paragraph that is placed directly after an h1 element */
+
 h1 + p {
     text-align: center;
     margin-bottom: 25px;
@@ -92,7 +91,7 @@ p {
     font-weight: 300; 
 } 
 
-/* Interactivity (Buttons) */ 
+
 button { 
     background-color: #ff66aa; 
     color: #ffffff; 
@@ -117,7 +116,7 @@ button:active {
     transform: scale(0.95); 
 } 
 
-/* Form Layout */ 
+
 form { 
     background-color: rgba(34, 23, 34, 0.7); 
     padding: 25px; 
@@ -168,7 +167,7 @@ input:focus, select:focus, textarea:focus {
     background-color: #342e3e; 
 } 
 
-/* Box Panels & Containers */ 
+
 .dashed-box { 
     border: 2px dashed #ff66aa !important; 
     background-color: #221f29 !important; 
@@ -176,7 +175,7 @@ input:focus, select:focus, textarea:focus {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); 
 } 
 
-/* Feature Grid Layout for Homepage Blocks */ 
+
 .features-layout { 
     display: flex; 
     gap: 20px; 

@@ -207,24 +207,49 @@ hr {
 }
 
 @media (max-width: 768px) {
+  body {
+    padding: 10px 8px;
+  }
   .main-container {
     padding: 20px 15px;
+    max-width: 100%;
+    margin-bottom: 20px;
   }
-  
   h1 {
     font-size: 1.8rem;
   }
-  
   nav {
     padding: 10px 15px;
+    flex-direction: column;
+    align-items: stretch;
   }
-  
+  nav strong {
+    margin-right: 0;
+    margin-bottom: 8px;
+    text-align: center;
+  }
   nav a {
-    margin: 5px 5px;
-    font-size: 0.9rem;
+    margin: 4px 0;
+    text-align: center;
   }
-  
+  .features-layout {
+    flex-direction: column;
+    gap: 15px;
+  }
+  .feature-card {
+    width: 100%;
+    min-width: 0;
+  }
   form {
+    max-width: 100%;
     padding: 15px;
+  }
+  .hero-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+  .hero-buttons a, button {
+    width: 100%;
+    margin: 5px 0;
   }
 }
